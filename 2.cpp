@@ -6,7 +6,7 @@ using namespace std;
 void FillArray(int * const arr, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
-		arr[i] = rand();
+		arr[i] = rand() + 2;
 }
 
 void PrintArray(const int * const arr, const size_t size)
@@ -32,11 +32,11 @@ void main()
 	srand(time(NULL));
 
 	size_t sizeA;
-	cout << "Enter size of A = " << endl;
+	cout << "Enter size of A = ";
 	cin >> sizeA;
 
 	size_t sizeB;
-	cout << "\nEnter size of B = " << endl;
+	cout << "\nEnter size of B = ";
 	cin >> sizeB;
 
 	int *A = new int[sizeA];
@@ -52,8 +52,7 @@ void main()
 
 	int *C = new int[sizeA + sizeB];
 
-	unsigned __int64 geomMean = 1;
-	bool checkGeomMean = true;
+	double sumLog = 0;
 
 	for (size_t i = 0; i < sizeA + sizeB; ++i)
 	{
@@ -61,13 +60,8 @@ void main()
 			C[i] = A[i];
 		else
 			C[i] = B[i - sizeA];
-		unsigned __int64 temp = geomMean;
-		geomMean *= abs(C[i]);
-		if (checkGeomMean == true)
-			if (geomMean / C[i] != temp)
-				checkGeomMean = false;
+		sumLog += log10(C[i]);
 	}
-
 	delete[] B;
 	delete[] A;
 	B = nullptr;
@@ -87,8 +81,8 @@ void main()
 	delete[] C;
 	C = nullptr;
 
-	if (checkGeomMean)
-		cout << "\nGeometric mean = " << pow(geomMean, 1.0 / (sizeA + sizeB)) << endl;
-	else
-		cout << "\nWhen calculating the geometric mean we went beyound the range" << endl;
+	sumLog /= sizeA + sizeB;
+	sumLog = pow(10, sumLog);
+	cout.precision(20);
+	cout << "\Geometric mean = " << sumLog << endl;
 }
