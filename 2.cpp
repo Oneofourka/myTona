@@ -62,7 +62,7 @@ void main()
 		else
 			C[i] = B[i - sizeA];
 		unsigned __int64 temp = geomMean;
-		geomMean *= C[i];
+		geomMean *= abs(C[i]);
 		if (checkGeomMean == true)
 			if (geomMean / C[i] != temp)
 				checkGeomMean = false;
