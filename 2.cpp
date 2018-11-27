@@ -13,6 +13,7 @@ void PrintArray(const int * const arr, const size_t size)
 {
 	for (size_t i = 0; i < size; ++i)
 		cout << arr[i] << "\t";
+	cout << endl;
 }
 
 void bubbleSort(int * const arr, const size_t size)
@@ -40,14 +41,15 @@ void main()
 	cin >> sizeB;
 
 	int *A = new int[sizeA];
-	int *B = new int[sizeB];
-
 	FillArray(A, sizeA);
+
+	int *B = new int[sizeB];
 	FillArray(B, sizeB);
 
 	cout << "\nA:" << endl;
 	PrintArray(A, sizeA);
-	cout << "\n\nB:" << endl;
+
+	cout << "\nB:" << endl;
 	PrintArray(B, sizeB);
 
 	int *C = new int[sizeA + sizeB];
@@ -63,26 +65,25 @@ void main()
 		sumLog += log10(C[i]);
 	}
 	delete[] B;
-	delete[] A;
 	B = nullptr;
+	delete[] A;
 	A = nullptr;
 
-	cout << "\n\nold C:" << endl;
+	cout << "\nold C:" << endl;
 	PrintArray(C, sizeA + sizeB);
 
 	bubbleSort(C, sizeA + sizeB);
 
-	cout << "\n\nnew C:" << endl;
+	cout << "\nnew C:" << endl;
 	PrintArray(C, sizeA + sizeB);
 
-	cout << "\n\nMin element = " << C[0] << endl;
+	cout << "\nMin element = " << C[0] << endl;
 	cout << "\nMax element = " << C[sizeA + sizeB - 1] << endl;
 
 	delete[] C;
 	C = nullptr;
 
-	sumLog /= sizeA + sizeB;
-	sumLog = pow(10, sumLog);
+	sumLog = pow(10, sumLog / (sizeA + sizeB));
 	cout.precision(20);
-	cout << "\Geometric mean = " << sumLog << endl;
+	cout << "\nGeometric mean = " << sumLog << endl << endl;;
 }
