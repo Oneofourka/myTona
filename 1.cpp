@@ -25,13 +25,13 @@ void main()
 			{
 				++i0;
 				continue;
-			}			
+			}
 			else
 			{
 				myVector.push_back(str.substr(i0, i - i0));
 				i0 = i + 1;
 			}
-		if (i == str.size() - 1 && str[i] != symbol && i0 != 0)
+		else if (i == str.size() - 1 && i0 != 0)
 			myVector.push_back(str.substr(i0, str.size() - i0));
 	}
 	if (myVector.size() == 0)
@@ -42,9 +42,10 @@ void main()
 	else
 	{
 		cout << "Substrings : " << endl;
-		for (string i: myVector)
+		for (string i : myVector)
 			cout << i << endl;
 	}
+	cout << endl;
 //	cout << "size = " << myVector.size() << endl;
 	myVector.clear();
 }
