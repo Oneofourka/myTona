@@ -52,4 +52,5 @@ void main()
 			cout << " Page: /";
 		cout << endl;
 	}
+	urls.clear();
 }

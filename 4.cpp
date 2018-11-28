@@ -57,4 +57,5 @@ void main()
 		}
 	}
 	fs.close();
+	myVector.clear();
 }
